@@ -1,0 +1,30 @@
+<h1 id="tableLabel">Video Game List</h1>
+
+<p>This component demonstrates fetching video game data from the server.</p>
+@if(!forcasts){
+  <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+}@else {
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Game Name</th>
+            <th>Released Date</th>
+            <th>Current Players</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+      @for (forecast of forcasts; track $index) {
+        <tr>
+            <td>{{ forecast.game }}</td>
+            <td>{{ forecast.releasedDate }}</td>
+            <td>{{ forecast.currentPlayers }}</td>
+            <td>{{ forecast.summary }}</td>
+        </tr>
+      }
+    </tbody>
+</table>
+}

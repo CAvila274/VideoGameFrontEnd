@@ -1,0 +1,42 @@
+<h1 id="tableLabel">Video Game Console List</h1>
+
+<p>This component demonstrates fetching video game data from the server.</p>
+
+<!-- Display table if gameConsoles data is available -->
+<!--<div *ngIf="!isLoading && gameConsoles.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Game Console Name</th>
+        <th>Release Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let console of gameConsoles">
+        <td>{{console.id}}</td>
+        <td>{{ console.name }}</td>
+        <td>{{ console.releaseDate | date:'short' }}</td>  Format the date 
+      </tr>
+    </tbody>
+  </table>
+</div>-->
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Game Console Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (console of gameConsoles; track console.id) {
+      <tr ngFor="let country of countries">
+        <td >{{ console.id }}</td>
+        <td>{{ console.name }}</td>
+        <td>{{ console.releaseDate}}</td>
+      </tr>  
+    }
+  </tbody>
+</table>
