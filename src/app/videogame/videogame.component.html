@@ -1,0 +1,29 @@
+<h1>Video Games</h1>
+
+<videogame-form></videogame-form>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Released Date</th>
+      <th>Console ID</th>
+    </tr>
+  </thead>
+
+  <tbody>
+ 
+    <tr *ngFor="let videoGame of videoGame">
+      <td>{{videoGame.id}}</td>
+      <td>{{videoGame.name}}</td>
+      <td>{{videoGame.releaseDate}}</td>
+      <td>{{videoGame.consoleId}}</td>
+
+    </tr>
+
+
+  </tbody>
+
+
+</table>

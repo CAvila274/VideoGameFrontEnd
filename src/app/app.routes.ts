@@ -1,12 +1,15 @@
 import { Routes } from '@angular/router';
-import { CountryComponent } from './country/country.component';
 import { GameConsoleComponent } from './gameconsole/gameconsole.component';
-import { WeatherComponent } from './weather/weather.component';
-import { CountryPopulationComponent } from './country/country-population.component';
+import { GameTitleComponent } from './gametitle/gametitle.component';
+import { VideoGameComponent } from './videogame/videogame.component';
+import { GameCompaniesComponent } from './gamecompanies/gamecompanies.component';
+import { LoginComponent } from './auth/login.component';
 
 export const routes: Routes = [
-    {path: "countries", component: CountryComponent},
+    
+    {path: "login", component: LoginComponent},
+    {path: "gamecompanies", component: GameCompaniesComponent},
     {path: "gameconsoles", component: GameConsoleComponent},
-    {path: "countrypopulation/:id", component: CountryPopulationComponent},
-    {path: "", component: WeatherComponent, pathMatch: "full"}
+    {path: "videogame", component: VideoGameComponent},
+    {path: "", component: GameTitleComponent, pathMatch: "full"}
 ];

@@ -2,42 +2,63 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule, DatePipe } from '@angular/common';
+import { FormComponent } from './form/form.component';
+import { GameConsole } from './gameconsole.types';
 
-
-interface GameConsole {
-  id: number;
-  name: string;
-  releaseDate: string;
-}
 
 @Component({
   selector: 'app-gameconsole',
   standalone: true,
-  imports: [DatePipe, CommonModule],
+  imports: [DatePipe, CommonModule, FormComponent],
   templateUrl: './gameconsole.component.html',
-  styleUrl: './gameconsole.component.scss'
 })
+
 export class GameConsoleComponent implements OnInit{
   public gameConsoles: GameConsole[] = []; 
   public isLoading: boolean = true;
+  public jon: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.getGameConsoles();
+    this.whatever();
   }
+
 
   getGameConsoles() {
     this.http.get<GameConsole[]>(`${environment.baseUrl}api/GameConsole/get`).subscribe(
-      (result: GameConsole[]) => { // Explicitly type the result
-        this.gameConsoles = result; // Assign to gameConsoles
-        this.isLoading = false; // Stop loading
+      (result: GameConsole[]) => {
+        console.log(result); 
+        this.gameConsoles = result; 
+        this.isLoading = false; 
       },
       (error) => {
         console.error('Error fetching game consoles:', error);
-        this.isLoading = false; // Stop loading even on error
+        this.isLoading = false; 
       }
     );
+  }
+
+  whatever() {
+    let temp = 4;
+    temp = temp + 5;
+    // any
+    // number
+    // string
+    // boolean
+    // { }
+    // { id: 0, name: "asdf"}
+    // GameConsole
+    this.http.get<any>(`${environment.baseUrl}api/GameConsole/whatever`).subscribe({
+      next: (response: any) => {
+        this.jon = response;
+        debugger
+      },
+      error: (error) => {
+
+      }
+    });
   }
 
 }

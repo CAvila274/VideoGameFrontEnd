@@ -1,0 +1,28 @@
+<h1>Game Companies</h1>
+
+<companies-form></companies-form>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company Name</th>
+      <th>Founded Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+ 
+    <tr *ngFor="let gameCompanies of gameCompanies">
+      <!--<td>{{gameCompanies.companyId}}</td>-->
+      <td>{{gameCompanies.id}}</td>
+      <td>{{gameCompanies.name}}</td>
+      <td>{{gameCompanies.foundedDate}}</td>
+
+    </tr>
+
+
+  </tbody>
+
+
+</table>
