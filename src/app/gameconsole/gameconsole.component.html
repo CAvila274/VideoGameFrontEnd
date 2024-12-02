@@ -2,25 +2,10 @@
 
 <p>This component demonstrates fetching video game data from the server.</p>
 
-<!-- Display table if gameConsoles data is available -->
-<!--<div *ngIf="!isLoading && gameConsoles.length > 0">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Game Console Name</th>
-        <th>Release Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let console of gameConsoles">
-        <td>{{console.id}}</td>
-        <td>{{ console.name }}</td>
-        <td>{{ console.releaseDate | date:'short' }}</td>  Format the date 
-      </tr>
-    </tbody>
-  </table>
-</div>-->
+<gameconsole-form></gameconsole-form>
+<!--<div>{{jon.id}}</div>
+<div>{{jon.name}}</div>-->
+
 
 <table class='table table-striped' aria-labelledby="tableLabel">
   <thead>
@@ -28,15 +13,39 @@
       <th>ID</th>
       <th>Game Console Name</th>
       <th>Date</th>
+      <th>Company ID</th>
+      <th>Is Cross platform</th>
+      <th>Console Type</th>
     </tr>
   </thead>
   <tbody>
-    @for (console of gameConsoles; track console.id) {
+    <!-- @for (console of gameConsoles; track console.Id) {
       <tr ngFor="let country of countries">
-        <td >{{ console.id }}</td>
-        <td>{{ console.name }}</td>
-        <td>{{ console.releaseDate}}</td>
+        <td >{{ console.Id }}</td>
+        <td>{{ console.Name }}</td>
+        <td>{{ console.ReleaseDate}}</td>
       </tr>  
-    }
+    } -->
+
+
+    <!-- [{Id: 1}, {Id: 2}] -->
+    <tr *ngFor="let gameConsole of gameConsoles">
+      <td>{{gameConsole.id}}</td>
+      <td>{{gameConsole.name}}</td>
+      <td>{{gameConsole.releaseDate}}</td>
+      <td>{{gameConsole.companyId}}</td>
+
+      <td>
+        <input type="checkbox" [checked]="gameConsole.isChecked" [disabled]="true"/>
+      </td>
+      <td>
+        <input type="radio" [checked]="gameConsole.consoleType" [disabled]="true"/>
+        <p>{{ gameConsole.consoleType }}</p>
+
+      </td>
+
+    </tr>
+
+
   </tbody>
 </table>

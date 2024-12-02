@@ -1,0 +1,43 @@
+
+<form [formGroup]="gameConsoleForm" (ngSubmit)="onSubmit()">
+  <div style="display: flex; justify-content: space-between; align-items: center;flex-direction: column;">
+    <label for="game-console">Game Console: </label>
+    <input id="game-console" type="text" formControlName="gameConsole">
+    <div *ngIf="gameConsole?.touched && gameConsole?.invalid" style="color: red;">
+      <span *ngIf="gameConsole?.errors?.['required']">Game Console is required.</span>
+    </div>
+    
+    <label for="released-date">Released Date: </label>
+    <input id="released-date" type="text" formControlName="releasedDate">
+    <div *ngIf="gameConsole?.touched && gameConsole?.invalid" style="color: red;">
+      <span *ngIf="gameConsole?.errors?.['required']">Released Date is required.</span>
+    </div>
+  
+    <label for="company-id">Company ID: </label>
+    <input id="company-id" type="text" formControlName="companyId">
+    <div *ngIf="gameConsole?.touched && gameConsole?.invalid" style="color: red;">
+      <span *ngIf="gameConsole?.errors?.['required']">Company ID is required.</span>
+    </div>
+
+    <label for="check-box">Cross platform: </label>
+    <input id="check-box" type="checkbox" (change)="checkBox($event)" formControlName="isChecked">
+    <div *ngIf="gameConsole?.touched && gameConsole?.invalid" style="color: red;">
+      <span *ngIf="gameConsole?.errors?.['required']">Cross Platform is required.</span>
+    </div>
+    
+
+    <label>Console Type:</label>
+    <div>
+      <input type="radio" formControlName="consoleType" value="Standard" /> Standard
+      <input type="radio" formControlName="consoleType" value="Slim" /> Slim
+      <input type="radio" formControlName="consoleType" value="Pro" /> Pro
+    </div>
+    <div *ngIf="gameConsole?.touched && gameConsole?.invalid" style="color: red;">
+      <span *ngIf="gameConsole?.errors?.['required']">Console Type is required.</span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </div>
+  
+</form>
+

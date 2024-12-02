@@ -1,0 +1,21 @@
+<form [formGroup]="gameCompaniesForm" (ngSubmit)="onSubmit()">
+  <div style="display: flex; justify-content: space-between; align-items: center;flex-direction: column;">
+
+
+    <label for="game-company">Game Company: </label>
+    <input id="game-company" type="text" formControlName="gameCompanies">
+    <div *ngIf="gameCompanies?.touched && gameCompanies?.invalid" style="color: red;">
+      <span *ngIf="gameCompanies?.errors?.['required']">Game Company is required.</span>
+    </div>
+    
+    <label for="founded-date">Founded Date: </label>
+    <input id="founded-date" type="text" formControlName="foundedDate">
+    <div *ngIf="foundedDate?.touched && foundedDate?.invalid" style="color: red;">
+      <span *ngIf="foundedDate?.errors?.['required']">Founded Date is required.</span>
+    </div>
+
+    
+    <button type="submit" >Submit</button>
+  </div>
+  
+</form>

@@ -1,0 +1,25 @@
+<form [formGroup]="videoGameForm" (ngSubmit)="onSubmit()">
+  <div style="display: flex; justify-content: space-between; align-items: center;flex-direction: column;">
+    <label for="video-game">Video Game: </label>
+    <input id="video-game" type="text" formControlName="videoGame">
+    <div *ngIf="videoGame?.touched && videoGame?.invalid" style="color: red;">
+      <span *ngIf="videoGame?.errors?.['required']">Video Game is required.</span>
+    </div>
+    
+    <label for="released-date">Released Date: </label>
+    <input id="released-date" type="text" formControlName="releaseDate">
+    <div *ngIf="videoGame?.touched && videoGame?.invalid" style="color: red;">
+      <span *ngIf="videoGame?.errors?.['required']">Released Date is required.</span>
+    </div>
+  
+    <label for="console-id">Console ID: </label>
+    <input id="console-id" type="text" formControlName="consoleId">
+    <div *ngIf="videoGame?.touched && videoGame?.invalid" style="color: red;">
+      <span *ngIf="videoGame?.errors?.['required']">Console ID is required.</span>
+    </div>
+
+    
+    <button type="submit">Submit</button>
+  </div>
+  
+</form>

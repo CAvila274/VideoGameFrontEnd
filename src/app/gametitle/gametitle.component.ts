@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 
-interface WeatherForecast {
+interface GameTitle {
   game: string;
   releasedDate: string;
   currentPlayers: number;
@@ -13,22 +13,22 @@ interface WeatherForecast {
   selector: 'app-weather',
   standalone: true,
   imports: [],
-  templateUrl: './weather.component.html',
-  styleUrl: './weather.component.scss'
+  templateUrl: './gametitle.component.html',
+  styleUrl: './gametitle.component.scss'
 })
-export class WeatherComponent implements OnInit{
-  public forcasts: WeatherForecast[] = [];
+export class GameTitleComponent implements OnInit{
+  public gameTitle: GameTitle[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getForecasts();
+    this.getGameTitle();
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>(`${environment.baseUrl}WeatherForecast`).subscribe(
+  getGameTitle() {
+    this.http.get<GameTitle[]>(`${environment.baseUrl}GameTitle`).subscribe(
       (result) => {
-        this.forcasts = result;
+        this.gameTitle = result;
       },
       (error) => {
         console.error(error);

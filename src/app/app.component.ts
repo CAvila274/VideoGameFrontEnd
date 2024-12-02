@@ -5,7 +5,7 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { CommonModule } from '@angular/common'; 
 
 
-interface WeatherForecast {
+interface GameTitle {
   game: string;
   releasedDate: string;
   currentPlayers: number;
@@ -16,6 +16,21 @@ interface GameConsole {
   id: number;
   name: string;
   releaseDate: string;
+  companyId: number;
+  isChecked: boolean;
+}
+
+interface GameCompanies{
+  id: number;
+  name: string | null;
+  foundedDate: Date;
+}
+
+interface VideoGame{
+  id: number;
+  name: string | null;
+  releaseDate: Date;
+  consoleId: number;
 }
 
 @Component({
@@ -26,21 +41,26 @@ interface GameConsole {
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+  public gameTitle: GameTitle[] = [];
   public gameConsole: GameConsole[] = [];
+  public gameCompanies: GameCompanies[] = []; 
+  public videoGames: VideoGame[] = [];
+
 
   christian = ""
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getForecasts();
+    this.getGameTitle();
     this.getGameConsole();
+    this.getGameCompanies();
+    this.getVideoGames();
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('http://localhost:5172/WeatherForecast').subscribe(
+  getGameTitle() {
+    this.http.get<GameTitle[]>('http://localhost:5172/GameTitle').subscribe(
       (result) => {
-        this.forecasts = result;
+        this.gameTitle = result;
       },
       (error) => {
         console.error(error);
@@ -52,10 +72,31 @@ export class AppComponent implements OnInit {
     this.http.get<GameConsole>('http://localhost:5172/api/GameConsole/get').subscribe(
       (result) => {
         console.log(result.name) // Playstation
-        this.christian = result.name
       },
       (error) => {
         console.error(error);
+      }
+    );
+  }
+
+  getGameCompanies() {
+    this.http.get<GameCompanies[]>(`http://localhost:5172/api/GameCompanies/get`).subscribe(
+      (result: GameCompanies[]) => { // Explicitly type the result
+        this.gameCompanies = result; // Assign to gameConsoles
+      },
+      (error) => {
+        console.error('Error fetching game companies:', error);
+      }
+    );
+  }
+
+  getVideoGames() {
+    this.http.get<VideoGame[]>(`http://localhost:5172/api/VideoGames/get`).subscribe(
+      (result: VideoGame[]) => { // Explicitly type the result
+        this.videoGames = result; // Assign to gameConsoles
+      },
+      (error) => {
+        console.error('Error fetching video games:', error);
       }
     );
   }
