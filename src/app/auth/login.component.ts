@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './auth.service';
 import { LoginResponse } from './login-response';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -36,7 +37,11 @@ onSubmit(): void {
     {
       next: result => {
         loginResponse = result;
-        console.log(loginResponse)
+        console.log(loginResponse);
+         if(result.success){
+          localStorage.setItem("coinvalue", result.token);
+          this.router.navigate(["/"]);
+        }
       },
       error: e => console.error(e)
     }
@@ -52,6 +57,6 @@ onSubmit(): void {
   }
   form!: UntypedFormGroup;
   
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
   
 }
